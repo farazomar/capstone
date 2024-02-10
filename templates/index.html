@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload New Images</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap'>
+    <link rel="stylesheet" href="/static/styles/styles.css">
+</head>
+<body class ="index">
+    <nav class="navbar navbar-expand-lg navbar-dark header-index">
+        <img src="/static/images/Conc-logo.png" alt="" class="conc-fav">
+        <a class="nav-link" href="/dashboard"><h3 class="header-heading">INDU 6990 Capstone</h3></a>
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+          <ul class="navbar-nav navbar-head">
+            <li class="nav-item">
+              <a class="nav-link" href="/index">Upload New Images</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+      <div class="dashboard">
+      <div class="container mt-5">
+        <h1 class="text-center mb-4">Upload Files</h1>
+        <form action="/upload" method="post" enctype="multipart/form-data" id="uploadForm">
+            <div class="custom-file mb-3">
+                <input type="file" class="custom-file-input" id="customFile" name="file" accept="image/*" multiple required>
+                <label class="custom-file-label" for="customFile">Choose files</label>
+            </div>
+            <button type="submit" class="btn btn-primary">
+                <span>Upload and Classify</span>
+                <span class="ml-2" role="status" aria-hidden="true"></span>
+            </button>
+        </form>
+
+        <!-- List to display uploaded image names -->
+        <div id="uploadedImages"></div>
+    </div>
+</div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    
+    <script>
+        // Function to display uploaded image names
+        function displayUploadedImages() {
+            // Get the file input element
+            var fileInput = document.getElementById('customFile');
+            // Get the div where uploaded image names will be displayed
+            var uploadedImagesDiv = document.getElementById('uploadedImages');
+
+            // Clear previous image names from the div
+            uploadedImagesDiv.innerHTML = '';
+
+            // Loop through each file selected
+            for (var i = 0; i < fileInput.files.length; i++) {
+                // Create a new paragraph element
+                var para = document.createElement('p');
+                // Set the text content of the paragraph to the filename
+                para.textContent = fileInput.files[i].name;
+                // Append the paragraph to the div
+                uploadedImagesDiv.appendChild(para);
+            }
+        }
+
+        // Call the function when files are selected
+        document.getElementById('customFile').addEventListener('change', displayUploadedImages);
+    </script>
+</body>
+</html>
